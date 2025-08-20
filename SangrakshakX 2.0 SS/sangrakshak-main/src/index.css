@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SangrakshaX Design System - Dark theme with glassmorphism */
+
+@layer base {
+  :root {
+    /* Dark theme colors */
+    --background: 220 30% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 210 40% 98%;
+    
+    --glass: 220 25% 10%;
+    --glass-border: 220 25% 20%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 200 100% 60%;
+    --primary-foreground: 220 30% 5%;
+    --primary-glow: 200 100% 70%;
+
+    --secondary: 220 25% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 25% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 270 100% 70%;
+    --accent-foreground: 220 30% 5%;
+    --accent-glow: 270 100% 80%;
+
+    --success: 120 60% 50%;
+    --success-foreground: 120 60% 10%;
+
+    --warning: 40 90% 60%;
+    --warning-foreground: 40 90% 10%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 75% 10%;
+
+    --border: 220 25% 20%;
+    --input: 220 25% 15%;
+    --ring: 200 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 220 30% 6%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 200 100% 60%;
+    --sidebar-primary-foreground: 220 30% 5%;
+    --sidebar-accent: 220 25% 12%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 220 25% 15%;
+    --sidebar-ring: 200 100% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-glass: linear-gradient(135deg, 
+      hsl(var(--glass) / 0.8), 
+      hsl(var(--glass) / 0.4));
+    --gradient-hero: linear-gradient(135deg, 
+      hsl(var(--primary) / 0.9), 
+      hsl(var(--accent) / 0.7));
+
+    /* Shadows and effects */
+    --shadow-glass: 0 8px 32px hsl(var(--primary) / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    --shadow-accent: 0 0 20px hsl(var(--accent-glow) / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effects */
+  .glass-card {
+    @apply backdrop-blur-xl bg-gradient-to-br from-glass/80 to-glass/40;
+    @apply border border-glass-border/30 rounded-xl;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-navbar {
+    @apply backdrop-blur-xl bg-gradient-to-r from-glass/90 to-glass/70;
+    @apply border-b border-glass-border/30;
+    box-shadow: 0 4px 30px hsl(var(--primary) / 0.1);
+  }
+
+  .glass-sidebar {
+    @apply backdrop-blur-xl border-r border-sidebar-border/30;
+    background: linear-gradient(180deg, 
+      hsl(var(--sidebar-background) / 0.95), 
+      hsl(var(--sidebar-background) / 0.85));
+  }
+
+  /* Button variants */
+  .btn-glass {
+    @apply bg-gradient-to-r from-glass/60 to-glass/40;
+    @apply border border-glass-border/40 backdrop-blur-sm;
+    @apply hover:from-primary/20 hover:to-primary/10;
+    @apply transition-all duration-300;
+  }
+
+  .btn-glow {
+    @apply bg-gradient-to-r from-primary to-primary-glow;
+    @apply shadow-glow hover:shadow-accent;
+    @apply transition-all duration-300 transform hover:scale-105;
+  }
+
+  /* Text effects */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary-glow) / 0.5);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover animations */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Professional scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.6) hsl(var(--background));
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary) / 0.6), 
+      hsl(var(--accent) / 0.4));
+    border-radius: 4px;
+    border: 1px solid hsl(var(--background));
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary) / 0.8), 
+      hsl(var(--accent) / 0.6));
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: hsl(var(--background));
+  }
+}

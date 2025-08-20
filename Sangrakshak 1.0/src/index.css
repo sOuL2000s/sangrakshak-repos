@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyberpunk Design System */
+
+@layer base {
+  :root {
+    --background: 10 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 10 10% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 10 10% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 10 10% 4%;
+
+    --secondary: 260 100% 22%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 10 10% 10%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 300 100% 50%;
+    --accent-foreground: 10 10% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 10 10% 15%;
+    --input: 10 10% 15%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cyber-dark text-foreground;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(61, 0, 112, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.2) 0%, transparent 50%),
+      linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
+    background-attachment: fixed;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-card/50 backdrop-blur-sm border border-cyber-blue/30 rounded-lg;
+    background-image: linear-gradient(135deg, rgba(61, 0, 112, 0.1) 0%, rgba(0, 229, 255, 0.1) 100%);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  .cyber-button {
+    @apply relative px-6 py-3 font-rajdhani font-semibold tracking-wider uppercase;
+    @apply bg-gradient-to-r from-cyber-purple to-cyber-blue;
+    @apply border border-cyber-blue/50 rounded-lg;
+    @apply transition-all duration-300 hover:shadow-neon-blue;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
+    @apply before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700;
+    @apply overflow-hidden;
+  }
+
+  .holographic {
+    @apply relative;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .scanning-line {
+    @apply absolute inset-0 overflow-hidden;
+  }
+
+  .scanning-line::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-0.5 bg-cyber-blue;
+    animation: scan 2s linear infinite;
+    box-shadow: 0 0 10px #00E5FF;
+  }
+
+  .threat-counter {
+    @apply font-orbitron font-bold text-2xl text-cyber-gold neon-text;
+  }
+
+  .matrix-bg {
+    background-image:
+      linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+/* Custom Scrollbar with Smooth Transitions */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3D0070, #00E5FF);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #00E5FF, #FF00FF);
+}
+
+/* Smooth scrolling for dashboard content */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 229, 255, 0.5) #1A1A1A;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 229, 255, 0.3);
+  color: white;
+}
